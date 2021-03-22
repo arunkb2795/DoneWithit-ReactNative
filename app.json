@@ -20,6 +20,9 @@
       "supportsTablet": true
     },
     "android": {
+      "package":"com.linkageft.myapp",
+      "versionCode":1,
+      "permissions":[],
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
