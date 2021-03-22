@@ -10,7 +10,6 @@ export default function PalettePreview({ handlePress, ColorPalette }) {
   return (
     <TouchableOpacity onPress={handlePress}>
       <Text style={styles.text}>{ColorPalette.paletteName}</Text>
-      {console.log(ColorPalette.colors)}
       <FlatList
         horizontal={true}
         data={ColorPalette.colors.slice(0, 5)}

@@ -9,7 +9,6 @@ export default function ColorPalette({ route }) {
   );
   return (
     <View>
-      {/* <Text style={styles.text}>Here Some boxes of different colors!</Text> */}
       <FlatList
         data={colors}
         renderItem={renderItem}
