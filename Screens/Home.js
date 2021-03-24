@@ -1,8 +1,18 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { View, FlatList } from "react-native";
+import {
+  View,
+  FlatList,
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  SafeAreaView,
+} from "react-native";
 import PalettePreview from "../Components/PalettePreview";
 
-export default function Home({ navigation }) {
+export default function Home({ navigation, route }) {
+  const newColorPalette = route.params
+    ? route.params.newColorPalette
+    : undefined;
   // useState
   const [colorPalettes, setColorPalettes] = useState([]);
   const [isRefresh, isSetRefresh] = useState(false);
@@ -23,6 +33,12 @@ export default function Home({ navigation }) {
     handleFetchPalette();
   }, []);
 
+  useEffect(() => {
+    if (newColorPalette) {
+      setColorPalettes((palettes) => [newColorPalette, ...palettes]);
+    }
+  }, [newColorPalette]);
+
   const handleRefresh = useCallback(async () => {
     isSetRefresh(true);
     await handleFetchPalette();
@@ -31,6 +47,15 @@ export default function Home({ navigation }) {
 
   return (
     <View>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          navigation.navigate("ColorPaletteModal");
+        }}
+      >
+        <Text>Add New Palette</Text>
+      </TouchableOpacity>
+
       <FlatList
         data={colorPalettes}
         renderItem={({ item }) => (
@@ -51,3 +76,11 @@ export default function Home({ navigation }) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  button: {
+    alignItems: "center",
+    backgroundColor: "#DDDDDD",
+    paddingVertical: 20,
+  },
+});

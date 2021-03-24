@@ -11,6 +11,7 @@ export default function PalettePreview({ handlePress, ColorPalette }) {
     <TouchableOpacity onPress={handlePress}>
       <Text style={styles.text}>{ColorPalette.paletteName}</Text>
       <FlatList
+        style={styles.container}
         horizontal={true}
         data={ColorPalette.colors.slice(0, 5)}
         renderItem={({ item }) => (
@@ -28,6 +29,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 5,
     marginTop: 10,
-    width: 40,
+    marginRight: 5,
   },
+  container: { width: "100%" },
 });
